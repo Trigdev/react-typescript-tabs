@@ -1,10 +1,10 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, FC, ReactElement } from "react";
 import { FaAngleDoubleRight } from "react-icons/fa";
 import { JobProps } from "./App.types";
 
 const url = "https://course-api.com/react-tabs-project";
 
-function App() {
+const App: FC = (): ReactElement => {
   const [loading, setLoading] = useState<boolean>(true);
   const [jobs, setJobs] = useState<Array<JobProps>>([]);
   const [value, setValue] = useState<number>(0);
@@ -23,7 +23,7 @@ function App() {
   if (loading) {
     return (
       <section className="section loading">
-        <h1>loading...</h1>
+        <div className="wobbling-3"></div>
       </section>
     );
   }
@@ -45,8 +45,8 @@ function App() {
                 <button
                   key={item.id}
                   type="button"
-                  onClick={() => setValue(index)} 
-                  className={`job-btn ${index === value && 'active-btn'}`}
+                  onClick={() => setValue(index)}
+                  className={`job-btn ${index === value && "active-btn"}`}
                 >
                   {item.company}
                 </button>
@@ -72,6 +72,6 @@ function App() {
       </section>
     </>
   );
-}
+};
 
 export default App;
